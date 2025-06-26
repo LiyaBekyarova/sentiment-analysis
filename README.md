@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🧠 Sentiment Analyzer — Built with Next.js + Transformers.js
 
-## Getting Started
+This project is a simple yet powerful sentiment analysis app built using:
 
-First, run the development server:
+- **Next.js (App Router)**
+- **Transformers.js** by 🤗 Hugging Face
+- **Tailwind CSS** for styling
+- **Web Workers** for smooth client-side inference
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+It lets users enter any text and instantly see whether the sentiment is **positive** or **negative** — all running directly in the browser with no backend needed.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🌐 Live Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> 📲 Try it now → [https://sentiment-analysis-five-snowy.vercel.app](https://sentiment-analysis-five-snowy.vercel.app)
 
-## Learn More
+Just type a sentence and get an instant sentiment prediction powered by distilBERT — all inside your browser!
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💡 What it does
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+When the user types something in the input field, the app:
+1. Sends the text to a **Web Worker**.
+2. The worker loads a pretrained `distilBERT` model (`Xenova/distilbert-base-uncased-finetuned-sst-2-english`) via Transformers.js.
+3. The model performs **sentiment analysis** entirely **client-side**, returning a label (like `POSITIVE` or `NEGATIVE`) with a confidence score.
+4. The result is displayed below the input, in real time.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧰 Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Tool | Purpose |
+|------|---------|
+| [Next.js](https://nextjs.org/) | App framework (App Router + static export) |
+| [Transformers.js](https://huggingface.co/docs/transformers.js) | Load and run ML models in-browser |
+| [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) | Keeps model inference off the main UI thread |
+| [Tailwind CSS](https://tailwindcss.com/) | Simple and responsive UI styling |
+| [distilBERT (SST-2)](https://huggingface.co/Xenova/distilbert-base-uncased-finetuned-sst-2-english) | Model for binary sentiment classification |
+
+---
+
+## ✨ Features
+
+- 🧠 Real-time sentiment analysis
+- ⚡ 100% client-side inference — no server or API calls
+- 🧵 Smooth performance thanks to Web Workers
+- 💅 Modern, responsive UI with Tailwind CSS
+- 📦 Deployed as a static Next.js app via Vercel
+
+---
+
+## 📦 Model Details
+
+- **Model**: `Xenova/distilbert-base-uncased-finetuned-sst-2-english`
+- **Task**: `text-classification`
+- **Trained on**: SST-2 (Stanford Sentiment Treebank)
+- **Parameters**: ~67M
+- **Runtime**: Fully in-browser via WebAssembly + ONNX
+
+---
+
+## 🚧 TODO
+
+- [ ] Improve mobile performance on slow networks
+- [ ] Add server-side inference version
+
+---
+
+## 💖 Credits
+
+Built with:
+- [Transformers.js](https://huggingface.co/docs/transformers.js)
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vercel](https://vercel.com/) for hosting
+
+---
+
+## 🐣 License
+
+MIT — do whatever you want, just be kind and credit if you fork ✨
